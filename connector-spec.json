@@ -1,0 +1,347 @@
+{
+	"name": "BeyondTrust-Representatives",
+	"commands": [
+		"std:test-connection",
+		"std:account:list",
+		"std:account:read",
+		"std:account:create",
+		"std:account:update",
+		"std:account:delete",
+		"std:account:disable",
+		"std:account:enable",
+		"std:account:unlock",
+		"std:entitlement:list",
+		"std:entitlement:read"
+	],
+	"sourceConfig": [
+		{
+			"type": "menu",
+			"label": "Configuration",
+			"items": [
+				{
+					"type": "section",
+					"sectionTitle": "Authentication",
+					"sectionHelpMessage": "Provide connection parameters to interact securely with the target instance.",
+					"items": [
+						{
+							"key": "instance",
+							"type": "text",
+							"label": "Base URL",
+							"helpText": "Base URL of the BeyondTrust instance",
+							"placeholder": "https://rs01.beyondtrustcloud.com",
+							"required": true
+						},
+						{
+							"key": "authUrl",
+							"type": "text",
+							"label": "Authentication URL",
+							"helpText": "Authentication URL of the BeyondTrust instance",
+							"placeholder": "https://rs01.beyondtrustcloud.com/oauth2/token",
+							"required": true
+						},
+						{
+							"key": "client_id",
+							"type": "text",
+							"label": "Client ID",
+							"helpText": "Client ID for the BeyondTrust instance",
+							"placeholder": "123456",
+							"required": true
+						},
+						{
+							"key": "client_secret",
+							"type": "secret",
+							"label": "Client Secret",
+							"helpText": "Client Secret for the BeyondTrust instance",
+							"placeholder": "123456",
+							"required": true
+						}
+					]
+				}
+			]
+		}
+	],
+	"accountSchema": {
+		"displayAttribute": "username",
+		"identityAttribute": "id",
+		"groupAttribute": "groups",
+		"attributes": [
+			{
+				"name": "id",
+				"type": "string",
+				"description": "The unique identifier of the account"
+			},
+			{
+				"name": "username",
+				"type": "string",
+				"description": "The username of the account"
+			},
+			{
+				"name": "public_display_name",
+				"type": "string",
+				"description": "Public Display Name of the user account"
+			},
+			{
+				"name": "private_display_name",
+				"type": "string",
+				"description": "Private Display Name of the user account"
+			},
+			{
+				"name": "password_reset_next_login",
+				"type": "boolean",
+				"description": "Password Reset at next login"
+			},
+			{
+				"name": "email_address",
+				"type": "string",
+				"description": "Email address of the account"
+			},
+			{
+				"name": "security_provider_id",
+				"type": "int",
+				"description": "Security Provider ID"
+			},
+			{
+				"name": "security_provider_name",
+				"type": "string",
+				"description": "Security Provider Name"
+			},
+			{
+				"name": "password_expiration",
+				"type": "string",
+				"description": "Password expiration date"
+			},
+			{
+				"name": "failed_logins",
+				"type": "int",
+				"description": "Number of failed logins for the user account"
+			},
+			{
+				"name": "last_authentication",
+				"type": "string",
+				"description": "Last authentication date"
+			},
+			{
+				"name": "created_at",
+				"type": "string",
+				"description": "Creation date"
+			},
+			{
+				"name": "enabled",
+				"type": "boolean",
+				"description": "Enable status for the user account"
+			},
+			{
+				"name": "preferred_email_language",
+				"type": "string",
+				"description": "Preferred Language of the user account"
+			},
+			{
+				"name": "two_factor_required",
+				"type": "string",
+				"description": "Two factor required for the user account"
+			},
+			{
+				"name": "groups",
+				"type": "string",
+				"entitlement": true,
+				"managed": true,
+				"multi": true,
+				"description": "The groups the user belongs to"
+			}
+		]
+	},
+	"entitlementSchemas": [
+		{
+			"type": "group",
+			"displayAttribute": "name",
+			"identityAttribute": "id",
+			"attributes": [
+				{
+					"name": "id",
+					"type": "string",
+					"description": "Unique ID of the Group Policy (ex. 2)"
+				},
+				{
+					"name": "name",
+					"type": "string",
+					"description": "The display name of the Group Policy (ex. Vendor)"
+				},
+				{
+					"name": "perm_share_other_team",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_extended_availability_mode_allowed",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_jump_client",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_local_jump",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_remote_jump",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_remote_vnc",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_remote_rdp",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_shell_jump",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_session_idle_timeout",
+					"type": "int",
+					"description": "Permission (ex. -1)"
+				},
+				{
+					"name": "perm_edit_external_key",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_collaborate",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_collaborate_control",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_invite_external_user",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_protocol_tunnel",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_access_allowed",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "perm_web_jump",
+					"type": "boolean",
+					"description": "Permission (ex. true)"
+				},
+				{
+					"name": "access_perm_status",
+					"type": "string",
+					"description": "Permission (ex. defined)"
+				}
+			]
+		}
+
+	],
+	"accountCreateTemplate": {
+		"fields": [
+			{
+				"key": "password",
+				"label": "password",
+				"initialValue": {
+					"type": "static",
+					"attributes": {
+						"value": "BtDev2023*"
+					}
+				},
+				"attributes": {},
+				"required": true,
+				"type": "string",
+				"isMultiValued": false
+			},
+			{
+				"key": "enabled",
+				"label": "enabled",
+				"initialValue": {
+					"attributes": {
+						"value": true
+					},
+					"type": "static"
+				},
+				"attributes": {},
+				"required": false,
+				"type": "int",
+				"isMultiValued": false
+			},
+			{
+				"key": "username",
+				"label": "username",
+				"initialValue": {
+					"attributes": {
+						"name": "uid"
+					},
+					"type": "identityAttribute"
+				},
+				"attributes": {},
+				"required": true,
+				"type": "string",
+				"isMultiValued": false
+			},
+			{
+				"key": "email_address",
+				"label": "email_address",
+				"initialValue": {
+					"attributes": {
+						"name": "email"
+					},
+					"type": "identityAttribute"
+				},
+				"attributes": {},
+				"required": true,
+				"type": "string",
+				"isMultiValued": false
+			},
+			 {
+				"key": "public_display_name",
+				"label": "public_display_name",
+				"initialValue": {
+					"attributes": {
+						"name": "displayName"
+					},
+					"type": "identityAttribute"
+				},
+				"attributes": {},
+				"required": true,
+				"type": "string",
+				"isMultiValued": false
+			},
+			{
+				"key": "private_display_name",
+				"label": "private_display_name",
+				"initialValue": {
+					"attributes": {
+						"name": "displayName"
+					},
+					"type": "identityAttribute"
+				},
+				"attributes": {},
+				"required": false,
+				"type": "string",
+				"isMultiValued": false
+			}
+	   ]
+		}
+
+}
