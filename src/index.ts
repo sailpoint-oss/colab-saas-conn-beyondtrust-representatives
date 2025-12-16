@@ -24,7 +24,8 @@ import {
     StdEntitlementListInput,
     StdEntitlementListOutput,
     StdEntitlementReadOutput,
-    StdEntitlementReadInput
+    StdEntitlementReadInput,
+    StdTestConnectionInput
 } from '@sailpoint/connector-sdk'
 import { MyClient } from './my-client'
 import { Util } from './tools/util'
@@ -44,7 +45,7 @@ export const connector = async () => {
     //    Error handling should prevent errors at the index level.
     try{
     return createConnector()
-        .stdTestConnection(async (context: Context, input: undefined, res: Response<StdTestConnectionOutput>) => {
+        .stdTestConnection(async (context: Context, input: StdTestConnectionInput, res: Response<StdTestConnectionOutput>) => {
             logger.info("Running test connection")
             res.send(await myClient.testConnection())
         })
